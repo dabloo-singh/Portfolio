@@ -449,3 +449,35 @@ footer{
     display:block;
 }
 }
+/* Contact Form Button Styling */
+.contact-form button{
+    width:100%;
+    padding:15px;
+    font-size:16px;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+    transition:.3s;
+}
+
+.contact-form button:disabled{
+    cursor:not-allowed;
+    opacity:0.8;
+}
+
+.contact-form button:hover:not(:disabled){
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(236,72,153,0.3);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+    color:#9ca3af;
+}
+
+.contact-form input,
+.contact-form textarea{
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+}
