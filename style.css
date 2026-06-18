@@ -10,7 +10,7 @@ html{
 }
 
 body{
-    background:#0f172a;
+    background:#1a1028;
     color:white;
     overflow-x:hidden;
 }
@@ -28,13 +28,16 @@ header{
     align-items:center;
     padding:20px 10%;
     backdrop-filter:blur(15px);
-    background:rgba(255,255,255,0.05);
+    background:linear-gradient(135deg, rgba(167,139,250,0.1) 0%, rgba(236,72,153,0.1) 100%);
 }
 
 .logo{
     font-size:28px;
     font-weight:700;
-    color:#38bdf8;
+    background:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
 }
 
 .nav-links{
@@ -53,7 +56,7 @@ header{
 }
 
 .nav-links a:hover{
-    color:#38bdf8;
+    color:#ec4899;
 }
 
 .menu-btn{
@@ -80,12 +83,15 @@ header{
 }
 
 .hero-content span{
-    color:#38bdf8;
+    background:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
 }
 
 .hero-content h2{
     margin-top:10px;
-    color:#94a3b8;
+    color:#d4b5fd;
 }
 
 .hero-content p{
@@ -96,7 +102,8 @@ header{
 .hero-image img{
     width:350px;
     border-radius:50%;
-    border:5px solid #38bdf8;
+    border:5px solid;
+    border-image:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%) 1;
 }
 
 .btn{
@@ -109,13 +116,14 @@ header{
 }
 
 .primary{
-    background:#38bdf8;
-    color:black;
+    background:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    color:white;
+    font-weight:600;
 }
 
 .secondary{
-    border:2px solid #38bdf8;
-    color:#38bdf8;
+    border:2px solid #ec4899;
+    color:#ec4899;
     margin-left:10px;
 }
 
@@ -140,6 +148,17 @@ section h2{
     line-height:2;
 }
 
+.contact-info a{
+    text-decoration:none;
+    color:#ec4899;
+    transition:.3s;
+}
+
+.contact-info a:hover{
+    text-decoration:underline;
+    color:#a78bfa;
+}
+
 .skill-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -147,17 +166,19 @@ section h2{
 }
 
 .skill-card{
-    background:#1e293b;
+    background:#2d1b4e;
     padding:30px;
     border-radius:15px;
     text-align:center;
     transition:.4s;
+    border:1px solid rgba(167,139,250,0.3);
 }
 
 .skill-card:hover{
     transform:translateY(-10px);
-    background:#38bdf8;
-    color:black;
+    background:linear-gradient(135deg, rgba(167,139,250,0.2) 0%, rgba(236,72,153,0.2) 100%);
+    border:1px solid #ec4899;
+    color:#fff;
 }
 
 .project-grid{
@@ -167,14 +188,16 @@ section h2{
 }
 
 .project-card{
-    background:#1e293b;
+    background:#2d1b4e;
     border-radius:15px;
     overflow:hidden;
     transition:.4s;
+    border:1px solid rgba(167,139,250,0.3);
 }
 
 .project-card:hover{
     transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(236,72,153,0.3);
 }
 
 .project-card img{
@@ -198,20 +221,182 @@ section h2{
     flex-direction:column;
 }
 
+/* Education Section */
+.education-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.edu-card{
+    background:#2d1b4e;
+    padding:25px;
+    border-radius:12px;
+    border-left:5px solid #ec4899;
+    transition:.4s;
+}
+
+.edu-card:hover{
+    transform:translateY(-8px);
+    background:linear-gradient(135deg, rgba(167,139,250,0.15) 0%, rgba(236,72,153,0.15) 100%);
+    box-shadow:0 10px 30px rgba(236,72,153,0.3);
+}
+
+.edu-card h3{
+    color:#a78bfa;
+    margin-bottom:8px;
+}
+
+.edu-card .degree{
+    font-weight:500;
+    color:white;
+    margin:8px 0;
+}
+
+.edu-card .meta{
+    font-size:14px;
+    color:#d4b5fd;
+}
+
+/* Skills Categories */
+.skills-container{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+}
+
+.skill-category{
+    text-align:center;
+}
+
+.skill-category h3{
+    font-size:22px;
+    background:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:2px solid;
+    border-image:linear-gradient(135deg, #a78bfa 0%, #ec4899 100%) 1;
+    display:inline-block;
+    width:100%;
+}
+
+/* Experience Section */
+.experience-card{
+    background:#2d1b4e;
+    padding:30px;
+    border-radius:15px;
+    max-width:900px;
+    margin:auto;
+    border-left:5px solid #ec4899;
+}
+
+.exp-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.exp-header h3{
+    color:#a78bfa;
+    margin-bottom:10px;
+}
+
+.exp-date{
+    background:rgba(236,72,153,0.15);
+    color:#ec4899;
+    padding:5px 15px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.exp-list{
+    list-style:none;
+    padding-left:0;
+}
+
+.exp-list li{
+    margin:12px 0;
+    padding-left:25px;
+    position:relative;
+    line-height:1.6;
+}
+
+.exp-list li:before{
+    content:'✓';
+    position:absolute;
+    left:0;
+    color:#ec4899;
+    font-weight:bold;
+}
+
+/* Project Cards Update */
+.project-card{
+    background:#1e293b;
+    border-radius:15px;
+    overflow:hidden;
+    transition:.4s;
+    display:flex;
+    flex-direction:column;
+    padding:25px;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(56,189,248,0.15);
+}
+
+.project-icon{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.project-card h3{
+    color:#a78bfa;
+    margin-bottom:8px;
+}
+
+.tech-stack{
+    font-size:13px;
+    color:#d4b5fd;
+    margin:8px 0 12px 0;
+}
+
+.project-card p{
+    color:#e9d5ff;
+    line-height:1.6;
+    font-size:14px;
+}
+
 .contact-form input,
 .contact-form textarea{
     margin-bottom:20px;
     padding:15px;
-    border:none;
+    border:1px solid rgba(167,139,250,0.3);
     border-radius:10px;
-    background:#1e293b;
+    background:#2d1b4e;
     color:white;
+    transition:.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+    outline:none;
+    border-color:#ec4899;
+    box-shadow:0 0 10px rgba(236,72,153,0.3);
 }
 
 footer{
     text-align:center;
     padding:30px;
-    background:#020617;
+    background:#0f0618;
+    border-top:1px solid rgba(167,139,250,0.2);
 }
 
 .reveal{
@@ -245,10 +430,11 @@ footer{
     top:80px;
     right:-100%;
     width:250px;
-    background:#1e293b;
+    background:#2d1b4e;
     flex-direction:column;
     text-align:center;
     transition:.4s;
+    border:1px solid rgba(167,139,250,0.3);
 }
 
 .nav-links.active{
