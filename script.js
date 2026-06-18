@@ -22,9 +22,23 @@ function reveal() {
 
 reveal();
 
+// Enhanced contact form handling
 document.querySelector(".contact-form")
 .addEventListener("submit", function(e){
-    e.preventDefault();
-
-    alert("Message Sent Successfully!");
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    // Show loading state
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+    
+    // FormSubmit will handle the actual submission
+    // Reset button after a delay (form will redirect)
+    setTimeout(() => {
+        submitBtn.textContent = "Message Sent! ✓";
+        submitBtn.style.background = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
+    }, 500);
 });
+
+
+
