@@ -2,7 +2,17 @@ const menuBtn = document.querySelector(".menu-btn");
 const navLinks = document.querySelector(".nav-links");
 
 menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+    const isOpen = navLinks.classList.toggle("active");
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+    menuBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+});
+
+navLinks.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Open navigation menu");
+    }
 });
 
 window.addEventListener("scroll", reveal);
@@ -39,6 +49,5 @@ document.querySelector(".contact-form")
         submitBtn.style.background = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
     }, 500);
 });
-
 
 

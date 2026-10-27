@@ -10,44 +10,52 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <header>
     <nav class="navbar">
-        <div class="logo">Dabloo Singh</div>
+        <a class="logo" href="#home" aria-label="Dabloo Singh home">Dabloo Singh<span>.</span></a>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="primary-navigation">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <div class="menu-btn">
-            ☰
-        </div>
+        <button class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
     </nav>
 </header>
 
 <section id="home" class="hero">
     <div class="hero-content">
+        <p class="eyebrow"><span class="status-dot"></span> Available for opportunities</p>
         <h1>Hi, I'm <span>Dabloo Singh</span></h1>
-        <h2>Full Stack Developer | Data Science Enthusiast</h2>
+        <h2>Full Stack Developer | Software Engineer</h2>
         <p>
-            BTech CSE student passionate about web development, AI/ML, and cybersecurity. Building robust applications with modern technologies.
+            Final-year Computer Science undergraduate building responsive, production-ready web applications with React, Node.js, and Supabase.
         </p>
 
         <div class="hero-buttons">
-            <a href="#projects" class="btn primary">View Work</a>
-            <a href="#contact" class="btn secondary">Hire Me</a>
+            <a href="#projects" class="btn primary">Explore my work <span aria-hidden="true">↗</span></a>
+            <a href="mailto:dabloosingh463@gmail.com" class="btn secondary">Get in touch</a>
         </div>
+        <div class="hero-meta"><span>Based in Delhi, India</span><span>Seeking software engineering roles</span></div>
     </div>
 
     <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43" alt="">
+        <div class="portrait-frame">
+            <div class="portrait-art" role="img" aria-label="Dabloo Singh monogram artwork">
+                <span class="portrait-orbit" aria-hidden="true"></span>
+                <span class="portrait-initials" aria-hidden="true">DS</span>
+                <span class="portrait-label" aria-hidden="true">SOFTWARE ENGINEER</span>
+            </div>
+        </div>
+        <div class="image-caption"><span class="caption-mark">✳</span><span>Curious mind.<br>Thoughtful code.</span></div>
     </div>
 </section>
 
@@ -57,18 +65,19 @@
     <div class="about-container">
         <div class="about-text">
             <p>
-                I'm Dabloo Singh, a passionate Computer Science student from United Institute of Technology (CGPA 6.8) based in Buxar, Bihar. I specialize in full-stack web development with expertise in frontend technologies and backend optimization.
+                I'm Dabloo Singh, a final-year Computer Science undergraduate focused on full-stack web development. I build responsive applications with React.js, Node.js, Tailwind CSS, and Supabase, and bring hands-on experience with Python, Java, SQL, and REST API design.
             </p>
 
             <p>
-                During my Industrial Training at NETCAMP (July-Aug 2024), I gained hands-on experience in web applications, network management, ethical hacking, data science, and API integration. I'm skilled in solving complex problems and delivering optimized solutions in fast-paced environments.
+                With a strong foundation in data structures, algorithms, and software engineering fundamentals, I'm seeking a Software Engineer or Full Stack Developer role where I can solve meaningful problems and help deliver scalable, production-ready products.
             </p>
             
-            <div class="contact-info" style="margin-top: 30px; font-size: 16px;">
-                <p><strong>📍 Location:</strong> Buxar, Bihar</p>
-                <p><strong>📞 Phone:</strong> +91 9934868176</p>
-                <p><strong>📧 Email:</strong> dabloosingh463@gmail.com</p>
-                <p><strong>🔗 LinkedIn:</strong> <a href="https://linkedin.com" target="_blank" style="color: #38bdf8;">linkedin.com</a></p>
+            <div class="contact-info">
+                <p><strong>📍 Location:</strong> Delhi, India</p>
+                <p><strong>📞 Phone:</strong> <a href="tel:+919934868176">+91 9934868176</a></p>
+                <p><strong>📧 Email:</strong> <a href="mailto:dabloosingh463@gmail.com">dabloosingh463@gmail.com</a></p>
+                <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/dabloo-singh-1a7716298" target="_blank" rel="noopener noreferrer">linkedin.com/in/dabloo-singh</a></p>
+                <p><strong>⌘ GitHub:</strong> <a href="https://github.com/dabloo-singh" target="_blank" rel="noopener noreferrer">github.com/dabloo-singh</a></p>
             </div>
         </div>
     </div>
@@ -80,17 +89,17 @@
         <div class="edu-card">
             <h3>United Institute of Technology</h3>
             <p class="degree">Bachelor of Technology in Computer Science and Engineering</p>
-            <p class="meta">Aug 2022 - June 2026 | CGPA: 6.8 | UP, India</p>
+            <p class="meta">Aug 2022 - Ongoing | UP, India</p>
         </div>
         <div class="edu-card">
             <h3>Pranab Chatarjee College, Buxar</h3>
             <p class="degree">Intermediate in Science</p>
-            <p class="meta">March 2020 - March 2022 | 71.40% | Bihar, India</p>
+            <p class="meta">Mar 2020 - Mar 2022 | Bihar, India</p>
         </div>
         <div class="edu-card">
             <h3>Harihar Singh Academy</h3>
             <p class="degree">Class 10th</p>
-            <p class="meta">April 2018 - May 2019 | 74.60% | UP, India</p>
+            <p class="meta">Apr 2018 - May 2019 | UP, India</p>
         </div>
     </div>
 </section>
@@ -100,9 +109,10 @@
 
     <div class="skills-container">
         <div class="skill-category">
-            <h3>Coding Languages</h3>
+            <h3>Programming Languages</h3>
             <div class="skill-grid">
-                <div class="skill-card">C/C++</div>
+                <div class="skill-card">C</div>
+                <div class="skill-card">C++</div>
                 <div class="skill-card">Java</div>
                 <div class="skill-card">Python</div>
                 <div class="skill-card">SQL</div>
@@ -110,37 +120,57 @@
         </div>
 
         <div class="skill-category">
-            <h3>Web Development & Libraries</h3>
+            <h3>Frontend</h3>
             <div class="skill-grid">
                 <div class="skill-card">HTML5</div>
                 <div class="skill-card">CSS3</div>
                 <div class="skill-card">JavaScript</div>
-                <div class="skill-card">React</div>
-                <div class="skill-card">Tailwind</div>
+                <div class="skill-card">React.js</div>
+                <div class="skill-card">Tailwind CSS</div>
                 <div class="skill-card">Bootstrap</div>
+                <div class="skill-card">Responsive Web Design</div>
             </div>
         </div>
 
         <div class="skill-category">
-            <h3>Data Science & Tools</h3>
+            <h3>Backend & APIs</h3>
             <div class="skill-grid">
-                <div class="skill-card">Pandas</div>
-                <div class="skill-card">NumPy</div>
-                <div class="skill-card">Matplotlib</div>
-                <div class="skill-card">scikit-learn</div>
+                <div class="skill-card">Node.js</div>
+                <div class="skill-card">Express.js</div>
                 <div class="skill-card">REST APIs</div>
-                <div class="skill-card">JSON</div>
+                <div class="skill-card">OAuth Authentication</div>
             </div>
         </div>
 
         <div class="skill-category">
-            <h3>IT Constructs</h3>
+            <h3>Databases</h3>
             <div class="skill-grid">
-                <div class="skill-card">OOPS</div>
-                <div class="skill-card">Data Structures</div>
-                <div class="skill-card">Algorithms</div>
-                <div class="skill-card">Network Management</div>
-                <div class="skill-card">Ethical Hacking</div>
+                <div class="skill-card">MongoDB</div>
+                <div class="skill-card">Supabase</div>
+                <div class="skill-card">SQL</div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Libraries & Data Tools</h3>
+            <div class="skill-grid">
+                <div class="skill-card">NumPy</div>
+                <div class="skill-card">Pandas</div>
+                <div class="skill-card">Matplotlib</div>
+                <div class="skill-card">Scikit-learn</div>
+            </div>
+        </div>
+
+        <div class="skill-category">
+            <h3>Developer Tools & CS Fundamentals</h3>
+            <div class="skill-grid">
+                <div class="skill-card">Git</div>
+                <div class="skill-card">GitHub</div>
+                <div class="skill-card">VS Code</div>
+                <div class="skill-card">Data Structures & Algorithms</div>
+                <div class="skill-card">Object-Oriented Programming</div>
+                <div class="skill-card">Operating Systems</div>
+                <div class="skill-card">Computer Networks</div>
             </div>
         </div>
     </div>
@@ -152,24 +182,36 @@
     <div class="project-grid">
 
         <div class="project-card">
-            <div class="project-icon">🎮</div>
-            <h3>Tic-Tac-Toe Game</h3>
-            <p class="tech-stack"><strong>Tech:</strong> C, HTML, CSS, JavaScript</p>
-            <p>Classic two-player game with optional single-player mode against AI (Minimax algorithm). Demonstrates game logic, state management, and input handling with control structures and arrays.</p>
+            <div class="project-icon">🩸</div>
+            <h3>Bone Marrow Donation System</h3>
+            <p class="tech-stack">React.js · Supabase · Tailwind CSS · OAuth</p>
+            <ul class="project-points">
+                <li>Built a full-stack donor management platform for institutes to centrally manage donor and patient records.</li>
+                <li>Implemented OAuth authentication and role-based access control to protect sensitive records.</li>
+                <li>Added real-time database operations and a responsive interface for consistent device usability.</li>
+            </ul>
         </div>
 
         <div class="project-card">
-            <div class="project-icon">❓</div>
+            <div class="project-icon">🍽️</div>
+            <h3>Food Delivery App</h3>
+            <p class="tech-stack">JavaScript · React.js · Node.js · Express.js · MongoDB</p>
+            <ul class="project-points">
+                <li>Created a full-stack food ordering platform with restaurant browsing, cart management, and REST APIs for menus and orders.</li>
+                <li>Added user authentication, secure checkout, and order history tracking.</li>
+                <li>Built a mobile-friendly React interface backed by MongoDB for scalable data storage.</li>
+            </ul>
+        </div>
+
+        <div class="project-card">
+            <div class="project-icon">🧠</div>
             <h3>The Quiz Adda</h3>
-            <p class="tech-stack"><strong>Tech:</strong> Python, Data Science, JSON, REST APIs</p>
-            <p>Quiz application with JSON-backed question bank managing coding questions. Features randomized question selection (5 per session), real-time scoring, results summary, and modular code design for easy expansion.</p>
-        </div>
-
-        <div class="project-card">
-            <div class="project-icon">🌤️</div>
-            <h3>Weather App</h3>
-            <p class="tech-stack"><strong>Tech:</strong> HTML, CSS, JavaScript, Tailwind</p>
-            <p>Location-based weather application displaying temperature, humidity, and wind speed. Features global weather search across any location with real-time data and responsive design.</p>
+            <p class="tech-stack">Python · JSON · REST APIs</p>
+            <ul class="project-points">
+                <li>Developed a Python quiz app with a JSON-backed question bank for coding questions across categories.</li>
+                <li>Implemented randomized question selection, real-time scoring, and a final results summary.</li>
+                <li>Added input validation and modular structure to make new question categories easy to add.</li>
+            </ul>
         </div>
 
     </div>
@@ -179,14 +221,26 @@
     <h2>Experience</h2>
     <div class="experience-card">
         <div class="exp-header">
+            <div class="exp-role">
+                <h3>Full-Stack Development Intern</h3>
+                <p class="exp-company">Last Minutes Deal · Internship</p>
+            </div>
+            <div class="exp-meta">
+                <span class="exp-date">Sep 2026 - Present · 2 mos</span>
+                <span class="exp-location">Remote</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="experience-card">
+        <div class="exp-header">
             <h3>NETCAMP - Industrial Training</h3>
             <span class="exp-date">July 2024 - Aug 2024</span>
         </div>
         <ul class="exp-list">
-            <li>Contributed to web application development and optimization across multiple domains including Network Management, Android App Development, and Ethical Hacking</li>
-            <li>Worked on both frontend and backend, ensuring seamless integration and performance</li>
-            <li>Gained hands-on experience in data science, API integration, and web development frameworks</li>
-            <li>Applied problem-solving skills to enhance user experience and optimize processes in a fast-paced development environment</li>
+            <li>Developed and optimized responsive user interfaces, improving application structure and usability during hands-on training.</li>
+            <li>Gained applied exposure to Network Management, Android App Development, Ethical Hacking, Data Science, and API Integration alongside web development.</li>
+            <li>Collaborated in a structured training environment and applied real-world software development workflows to assigned projects.</li>
         </ul>
     </div>
 </section>
@@ -202,8 +256,6 @@
         <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
 
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://yourportfolio.com/thank-you.html">
-
         <button type="submit" class="btn primary">
             Send Message
         </button>
@@ -211,7 +263,7 @@
 </section>
 
 <footer>
-    <p>© 2026 Dabloo Singh. All Rights Reserved. | 📧 dabloosingh463@gmail.com | 📞 +91 9934868176</p>
+    <p>© 2026 Dabloo Singh. All Rights Reserved. | Delhi, India | <a href="mailto:dabloosingh463@gmail.com">dabloosingh463@gmail.com</a></p>
 </footer>
 
 <script src="script.js"></script>
