@@ -1,271 +1,934 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="day">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dabloo Singh - Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7fb">
+    <meta name="description" content="Dabloo Singh — final-year Computer Science undergraduate seeking Software Engineer and Full Stack Developer roles.">
+    <title>Dabloo Singh — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --page: #f4f7fb;
+            --surface: #ffffff;
+            --surface-alt: #edf2f8;
+            --text: #152238;
+            --muted: #5e6d82;
+            --subtle: #8693a5;
+            --line: #dce4ef;
+            --accent: #2867e8;
+            --accent-contrast: #ffffff;
+            --accent-soft: #e6efff;
+            --secondary: #a4c2fb;
+            --code-bg: #111b2b;
+            --code-text: #e3ebf8;
+            --code-muted: #93a6c1;
+            --code-key: #9dc0ff;
+            --code-string: #c6e7a5;
+            --code-value: #f8c98d;
+            --shadow: 0 22px 65px rgba(34, 57, 91, .1);
+            --heading-font: "Bricolage Grotesque", sans-serif;
+            --body-font: "DM Sans", sans-serif;
+            --mono-font: "JetBrains Mono", monospace;
+            --radius: 18px;
+            --radius-small: 12px;
+            --page-width: 1160px;
+        }
 
-<link rel="stylesheet" href="style.css">
+        html[data-theme="night"] {
+            color-scheme: dark;
+            --page: #101725;
+            --surface: #172235;
+            --surface-alt: #1d2b41;
+            --text: #eff4fc;
+            --muted: #b0bfd3;
+            --subtle: #8192aa;
+            --line: #2b3a51;
+            --accent: #91b9ff;
+            --accent-contrast: #101725;
+            --accent-soft: #223553;
+            --secondary: #5d82bd;
+            --code-bg: #0c1320;
+            --code-text: #e3ebf8;
+            --code-muted: #899db8;
+            --code-key: #9dc0ff;
+            --code-string: #c6e7a5;
+            --code-value: #f8c98d;
+            --shadow: 0 24px 70px rgba(0, 0, 0, .23);
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        *, *::before, *::after { box-sizing: border-box; }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+
+        body {
+            min-width: 320px;
+            margin: 0;
+            background: var(--page);
+            color: var(--text);
+            font-family: var(--body-font);
+            font-size: 15px;
+            line-height: 1.65;
+            transition: background-color .25s ease, color .25s ease;
+        }
+
+        body, button, a { -webkit-tap-highlight-color: transparent; }
+        a { color: inherit; }
+        button { color: inherit; font: inherit; }
+        button:focus-visible, a:focus-visible, summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        ::selection { background: var(--accent); color: var(--accent-contrast); }
+        .shell { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; }
+        .mono { font-family: var(--mono-font); }
+
+        .site-header {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            border-bottom: 1px solid var(--line);
+            background: color-mix(in srgb, var(--page) 90%, transparent);
+            backdrop-filter: blur(18px);
+        }
+
+        .header-inner {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 24px;
+            min-height: 76px;
+        }
+
+        .brand {
+            width: fit-content;
+            text-decoration: none;
+            font-family: var(--heading-font);
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.06em;
+            white-space: nowrap;
+        }
+
+        .brand-mark { color: var(--accent); }
+        .main-nav { min-width: 0; }
+        .main-nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(8px, 1.35vw, 22px);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .main-nav a {
+            position: relative;
+            display: block;
+            padding: 10px 0;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .main-nav a::after {
+            position: absolute;
+            right: 0;
+            bottom: 4px;
+            left: 0;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--accent);
+            content: "";
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .2s ease;
+        }
+
+        .main-nav a:hover, .main-nav a[aria-current="location"] { color: var(--text); }
+        .main-nav a:hover::after, .main-nav a[aria-current="location"]::after { transform: scaleX(1); }
+
+        .theme-controls { display: flex; align-items: center; justify-self: end; }
+        .mode-toggle {
+            display: inline-flex;
+            min-height: 38px;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: border-color .18s ease, transform .18s ease;
+        }
+
+        .mode-toggle:hover { transform: translateY(-1px); border-color: var(--accent); }
+        .mode-icon { color: var(--accent); font-size: 16px; line-height: 1; }
+
+        main { overflow: clip; }
+        .section { padding-block: 104px; scroll-margin-top: 84px; }
+        .section-kicker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 13px;
+            color: var(--accent);
+            font-family: var(--mono-font);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .section-kicker::before { width: 22px; height: 1px; background: var(--accent); content: ""; }
+        .section-title {
+            margin: 0;
+            font-family: var(--heading-font);
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 700;
+            letter-spacing: -.055em;
+            line-height: 1.08;
+        }
+
+        .section-intro { max-width: 620px; margin: 14px 0 0; color: var(--muted); }
+
+        .hero {
+            display: grid;
+            min-height: min(720px, calc(100svh - 76px));
+            grid-template-columns: minmax(0, 1.12fr) minmax(350px, .88fr);
+            align-items: center;
+            gap: clamp(42px, 8vw, 108px);
+            padding-block: 72px 92px;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 24px;
+            padding: 8px 13px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .availability-dot {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .availability-dot::after {
+            position: absolute;
+            inset: -4px;
+            border: 1px solid var(--accent);
+            border-radius: inherit;
+            content: "";
+            animation: pulse 1.8s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: .8; transform: scale(.65); }
+            100% { opacity: 0; transform: scale(1.7); }
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: var(--heading-font);
+            font-size: clamp(56px, 7.7vw, 92px);
+            font-weight: 800;
+            letter-spacing: -.075em;
+            line-height: .96;
+        }
+
+        .hero h1 span { display: block; color: var(--accent); }
+        .hero-line {
+            min-height: 62px;
+            margin: 24px 0 14px;
+            font-family: var(--heading-font);
+            font-size: clamp(20px, 2.8vw, 29px);
+            font-weight: 600;
+            letter-spacing: -.04em;
+            line-height: 1.35;
+        }
+
+        .typed-word { color: var(--accent); }
+        .caret {
+            display: inline-block;
+            width: 2px;
+            height: .9em;
+            margin-left: 3px;
+            vertical-align: -.08em;
+            background: var(--accent);
+            animation: blink .9s steps(2, start) infinite;
+        }
+
+        @keyframes blink { to { visibility: hidden; } }
+        .hero-copy { max-width: 540px; margin: 0; color: var(--muted); font-size: 16px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+        .button {
+            display: inline-flex;
+            min-height: 46px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 11px 18px;
+            border: 1px solid transparent;
+            border-radius: var(--radius-small);
+            background: var(--accent);
+            color: var(--accent-contrast);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform .18s ease, filter .18s ease, background .18s ease;
+        }
+
+        .button:hover { filter: brightness(1.06); transform: translateY(-2px); }
+        .button-outline { border-color: var(--line); background: var(--surface); color: var(--text); }
+        .button-arrow { font-size: 17px; line-height: 1; }
+
+        .hero-location {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            margin-top: 30px;
+            color: var(--subtle);
+            font-family: var(--mono-font);
+            font-size: 11px;
+        }
+
+        .hero-location span { display: inline-flex; align-items: center; gap: 8px; }
+        .hero-location span::before { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); content: ""; }
+
+        .editor {
+            overflow: hidden;
+            border: 1px solid color-mix(in srgb, var(--accent) 23%, var(--line));
+            border-radius: var(--radius);
+            background: var(--code-bg);
+            box-shadow: var(--shadow);
+            transform: rotate(1deg);
+            transition: transform .25s ease;
+        }
+
+        .editor:hover { transform: rotate(0); }
+        .editor-bar {
+            display: flex;
+            min-height: 48px;
+            align-items: center;
+            gap: 7px;
+            padding-inline: 16px;
+            border-bottom: 1px solid color-mix(in srgb, var(--code-text) 12%, transparent);
+        }
+
+        .editor-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--code-muted); }
+        .editor-dot:first-child { background: var(--code-value); }
+        .editor-dot:nth-child(2) { background: var(--code-key); }
+        .editor-dot:nth-child(3) { background: var(--code-string); }
+        .editor-file { margin-left: auto; color: var(--code-muted); font-family: var(--mono-font); font-size: 10px; }
+        .editor-code { display: block; overflow-x: auto; padding: 26px 22px 30px; color: var(--code-text); font-family: var(--mono-font); font-size: clamp(11px, 1.2vw, 13px); line-height: 2; white-space: pre; }
+        .code-line { display: block; }
+        .code-number { display: inline-block; width: 28px; color: var(--code-muted); user-select: none; }
+        .code-key { color: var(--code-key); }
+        .code-string { color: var(--code-string); }
+        .code-value { color: var(--code-value); }
+        .code-punctuation { color: var(--code-muted); }
+
+        .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr); align-items: start; gap: 72px; }
+        .about-copy { max-width: 680px; margin: 22px 0 0; color: var(--muted); font-size: 16px; }
+        .about-copy + .about-copy { margin-top: 15px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .stat-card { min-height: 122px; padding: 21px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface); }
+        .stat-number { display: block; color: var(--accent); font-family: var(--heading-font); font-size: 31px; font-weight: 700; letter-spacing: -.06em; line-height: 1; }
+        .stat-label { display: block; margin-top: 10px; color: var(--muted); font-size: 12px; }
+
+        .section-alt { border-block: 1px solid var(--line); background: var(--surface-alt); }
+        .skills-head, .projects-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 30px; }
+        .filter-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-button {
+            min-height: 36px;
+            padding: 7px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            transition: color .18s ease, background .18s ease, border-color .18s ease;
+        }
+
+        .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accent-contrast); }
+        .skill-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+        .skill-chip {
+            display: flex;
+            min-height: 72px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-small);
+            background: var(--surface);
+            transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+        }
+
+        .skill-chip:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: var(--shadow); }
+        .skill-name { font-size: 13px; font-weight: 700; }
+        .skill-group { color: var(--subtle); font-family: var(--mono-font); font-size: 9px; text-align: right; }
+        .skill-chip[hidden], .project-card[hidden] { display: none; }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 16px; }
+        .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+        .project-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow); }
+        .project-card[open] { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+        .project-card summary { display: block; padding: 23px; cursor: pointer; list-style: none; }
+        .project-card summary::-webkit-details-marker { display: none; }
+        .project-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .project-index { color: var(--accent); font-family: var(--mono-font); font-size: 11px; }
+        .project-toggle { display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-size: 17px; line-height: 1; transition: transform .2s ease; }
+        .project-card[open] .project-toggle { transform: rotate(45deg); }
+        .project-card h3 { margin: 20px 0 9px; font-family: var(--heading-font); font-size: 21px; letter-spacing: -.04em; line-height: 1.2; }
+        .project-stack { margin: 0; color: var(--accent); font-family: var(--mono-font); font-size: 10px; line-height: 1.8; }
+        .project-details { padding: 0 23px 23px; }
+        .project-details ul { display: grid; gap: 11px; margin: 0; padding: 16px 0 0; border-top: 1px solid var(--line); list-style: none; }
+        .project-details li { position: relative; padding-left: 15px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+        .project-details li::before { position: absolute; top: .65em; left: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); content: ""; }
+
+        .journey-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+        .timeline-heading { margin: 0 0 25px; font-family: var(--heading-font); font-size: 25px; letter-spacing: -.04em; }
+        .timeline { position: relative; display: grid; gap: 12px; padding-left: 20px; }
+        .timeline::before { position: absolute; top: 8px; bottom: 8px; left: 5px; width: 1px; background: var(--line); content: ""; }
+        .timeline-card { position: relative; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface); }
+        .timeline-card::before { position: absolute; top: 25px; left: -20px; width: 9px; height: 9px; border: 2px solid var(--page); border-radius: 50%; background: var(--accent); content: ""; }
+        .timeline-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .timeline-card h4 { margin: 0; font-family: var(--heading-font); font-size: 16px; letter-spacing: -.025em; line-height: 1.35; }
+        .timeline-date { flex: 0 0 auto; padding: 4px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-family: var(--mono-font); font-size: 9px; }
+        .timeline-subtitle { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+        .timeline-place { margin: 5px 0 0; color: var(--subtle); font-size: 11px; }
+        .timeline-points { display: grid; gap: 7px; margin: 14px 0 0; padding-left: 17px; color: var(--muted); font-size: 12px; }
+
+        .contact-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(300px, 1.15fr); gap: 72px; }
+        .contact-copy { max-width: 430px; margin: 16px 0 0; color: var(--muted); }
+        .contact-links { display: grid; gap: 10px; }
+        .contact-row { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface); }
+        .contact-detail { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+        .contact-label { color: var(--subtle); font-family: var(--mono-font); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+        .contact-value { overflow-wrap: anywhere; font-size: 13px; font-weight: 600; text-decoration: none; }
+        .contact-value:hover { color: var(--accent); }
+        .copy-button { flex: 0 0 auto; min-width: 70px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius-small); background: var(--surface-alt); color: var(--muted); cursor: pointer; font-family: var(--mono-font); font-size: 10px; transition: color .18s ease, border-color .18s ease; }
+        .copy-button:hover { border-color: var(--accent); color: var(--accent); }
+        .copy-button[data-state="copied"] { border-color: var(--accent); color: var(--accent); }
+        .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .social-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid var(--line); border-radius: var(--radius-small); color: var(--muted); font-size: 12px; font-weight: 700; text-decoration: none; }
+        .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        .site-footer { padding-block: 22px; border-top: 1px solid var(--line); color: var(--subtle); font-size: 11px; }
+        .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+        .site-footer p { margin: 0; }
+
+        @media (min-width: 1500px) {
+            .hero h1 { font-size: 98px; }
+        }
+
+        @media (max-width: 1000px) {
+            .header-inner { grid-template-columns: auto 1fr; gap: 10px 18px; padding-block: 12px; }
+            .brand { grid-column: 1; grid-row: 1; }
+            .theme-controls { grid-column: 2; grid-row: 1; justify-self: end; }
+            .main-nav { grid-column: 1 / -1; grid-row: 2; overflow-x: auto; scrollbar-width: none; }
+            .main-nav::-webkit-scrollbar { display: none; }
+            .main-nav ul { width: max-content; justify-content: flex-start; gap: 22px; }
+            .hero { min-height: auto; grid-template-columns: minmax(0, 1fr) minmax(300px, .9fr); gap: 38px; padding-block: 74px; }
+            .hero h1 { font-size: clamp(56px, 8vw, 78px); }
+            .about-grid, .contact-grid { gap: 40px; }
+            .skill-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 700px) {
+            .shell { width: min(var(--page-width), calc(100% - 36px)); }
+            .section { padding-block: 74px; }
+            .header-inner { gap: 8px 14px; }
+            .main-nav ul { gap: 19px; }
+            .main-nav a { font-size: 12px; }
+            .hero { grid-template-columns: 1fr; gap: 42px; padding-block: 62px 76px; }
+            .hero h1 { font-size: clamp(54px, 12vw, 78px); }
+            .hero-line { min-height: 54px; }
+            .editor { width: min(100%, 520px); margin-inline: auto; }
+            .about-grid, .contact-grid, .journey-grid { grid-template-columns: 1fr; gap: 30px; }
+            .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .stat-card { min-height: 105px; padding: 15px 12px; }
+            .stat-number { font-size: 26px; }
+            .stat-label { font-size: 10px; line-height: 1.4; }
+            .skills-head, .projects-head { align-items: flex-start; flex-direction: column; }
+            .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .journey-grid { gap: 40px; }
+        }
+
+        @media (max-width: 420px) {
+            .shell { width: calc(100% - 32px); }
+            .section { padding-block: 64px; }
+            .mode-toggle { min-height: 36px; gap: 7px; padding: 6px 10px; font-size: 11px; }
+            .brand { font-size: 18px; }
+            .main-nav ul { gap: 17px; }
+            .hero { padding-block: 48px 62px; }
+            .hero h1 { font-size: clamp(49px, 13vw, 60px); }
+            .hero-line { min-height: 56px; font-size: 21px; }
+            .hero-copy { font-size: 14px; }
+            .hero-location { gap: 10px 16px; font-size: 10px; }
+            .editor-code { padding-inline: 13px; font-size: 10px; }
+            .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .stat-card { min-height: 96px; }
+            .skill-grid, .projects-grid { grid-template-columns: 1fr; }
+            .skill-chip { min-height: 58px; }
+            .project-card summary { padding: 19px; }
+            .project-details { padding: 0 19px 19px; }
+            .timeline-top { flex-direction: column; gap: 8px; }
+            .contact-row { gap: 8px; padding: 13px; }
+            .contact-value { font-size: 12px; }
+            .copy-button { min-width: 63px; padding-inline: 7px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<header>
-    <nav class="navbar">
-        <a class="logo" href="#home" aria-label="Dabloo Singh home">Dabloo Singh<span>.</span></a>
-
-        <ul class="nav-links" id="primary-navigation">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <button class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">☰</button>
-    </nav>
-</header>
-
-<section id="home" class="hero">
-    <div class="hero-content">
-        <p class="eyebrow"><span class="status-dot"></span> Available for opportunities</p>
-        <h1>Hi, I'm <span>Dabloo Singh</span></h1>
-        <h2>Full Stack Developer | Software Engineer</h2>
-        <p>
-            Final-year Computer Science undergraduate building responsive, production-ready web applications with React, Node.js, and Supabase.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#projects" class="btn primary">Explore my work <span aria-hidden="true">↗</span></a>
-            <a href="mailto:dabloosingh463@gmail.com" class="btn secondary">Get in touch</a>
-        </div>
-        <div class="hero-meta"><span>Based in Delhi, India</span><span>Seeking software engineering roles</span></div>
-    </div>
-
-    <div class="hero-image">
-        <div class="portrait-frame">
-            <div class="portrait-art" role="img" aria-label="Dabloo Singh monogram artwork">
-                <span class="portrait-orbit" aria-hidden="true"></span>
-                <span class="portrait-initials" aria-hidden="true">DS</span>
-                <span class="portrait-label" aria-hidden="true">SOFTWARE ENGINEER</span>
+    <header class="site-header">
+        <div class="shell header-inner">
+            <a class="brand" href="#home" aria-label="Dabloo Singh, home">dabloo<span class="brand-mark">.</span></a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-controls">
+                <button class="mode-toggle" id="mode-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+                    <span class="mode-icon" id="mode-icon" aria-hidden="true">☾</span>
+                    <span id="mode-label">Night mode</span>
+                </button>
             </div>
         </div>
-        <div class="image-caption"><span class="caption-mark">✳</span><span>Curious mind.<br>Thoughtful code.</span></div>
-    </div>
-</section>
+    </header>
 
-<section id="about" class="about reveal">
-    <h2>About Me</h2>
-
-    <div class="about-container">
-        <div class="about-text">
-            <p>
-                I'm Dabloo Singh, a final-year Computer Science undergraduate focused on full-stack web development. I build responsive applications with React.js, Node.js, Tailwind CSS, and Supabase, and bring hands-on experience with Python, Java, SQL, and REST API design.
-            </p>
-
-            <p>
-                With a strong foundation in data structures, algorithms, and software engineering fundamentals, I'm seeking a Software Engineer or Full Stack Developer role where I can solve meaningful problems and help deliver scalable, production-ready products.
-            </p>
-            
-            <div class="contact-info">
-                <p><strong>📍 Location:</strong> Delhi, India</p>
-                <p><strong>📞 Phone:</strong> <a href="tel:+919934868176">+91 9934868176</a></p>
-                <p><strong>📧 Email:</strong> <a href="mailto:dabloosingh463@gmail.com">dabloosingh463@gmail.com</a></p>
-                <p><strong>🔗 LinkedIn:</strong> <a href="https://www.linkedin.com/in/dabloo-singh-1a7716298" target="_blank" rel="noopener noreferrer">linkedin.com/in/dabloo-singh</a></p>
-                <p><strong>⌘ GitHub:</strong> <a href="https://github.com/dabloo-singh" target="_blank" rel="noopener noreferrer">github.com/dabloo-singh</a></p>
+    <main>
+        <section class="shell hero" id="home" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Open to Software Engineer roles</p>
+                <h1 id="hero-title">Dabloo <span>Singh.</span></h1>
+                <p class="hero-line">I build <span class="typed-word" id="typed-word">responsive web apps</span><span class="caret" aria-hidden="true"></span></p>
+                <p class="hero-copy">Final-year Computer Science undergraduate specializing in full-stack development. I build responsive applications with React.js, Node.js, Tailwind CSS, and Supabase.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#projects">View projects <span class="button-arrow" aria-hidden="true">↘</span></a>
+                    <a class="button button-outline" href="#contact">Get in touch <span class="button-arrow" aria-hidden="true">↗</span></a>
+                </div>
+                <div class="hero-location"><span>Delhi, India</span><span>Software Engineer / Full Stack Developer</span></div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section id="education" class="education reveal">
-    <h2>Education</h2>
-    <div class="education-grid">
-        <div class="edu-card">
-            <h3>United Institute of Technology</h3>
-            <p class="degree">Bachelor of Technology in Computer Science and Engineering</p>
-            <p class="meta">Aug 2022 - Ongoing | UP, India</p>
-        </div>
-        <div class="edu-card">
-            <h3>Pranab Chatarjee College, Buxar</h3>
-            <p class="degree">Intermediate in Science</p>
-            <p class="meta">Mar 2020 - Mar 2022 | Bihar, India</p>
-        </div>
-        <div class="edu-card">
-            <h3>Harihar Singh Academy</h3>
-            <p class="degree">Class 10th</p>
-            <p class="meta">Apr 2018 - May 2019 | UP, India</p>
-        </div>
-    </div>
-</section>
-
-<section id="skills" class="skills reveal">
-    <h2>Skills</h2>
-
-    <div class="skills-container">
-        <div class="skill-category">
-            <h3>Programming Languages</h3>
-            <div class="skill-grid">
-                <div class="skill-card">C</div>
-                <div class="skill-card">C++</div>
-                <div class="skill-card">Java</div>
-                <div class="skill-card">Python</div>
-                <div class="skill-card">SQL</div>
+            <div class="editor" aria-label="Code editor card summarizing Dabloo Singh">
+                <div class="editor-bar" aria-hidden="true">
+                    <span class="editor-dot"></span><span class="editor-dot"></span><span class="editor-dot"></span>
+                    <span class="editor-file">about.js</span>
+                </div>
+                <code class="editor-code" aria-label="JavaScript profile object"><span class="code-line"><span class="code-number">01</span><span class="code-key">const</span> dabloo = <span class="code-punctuation">{</span></span><span class="code-line"><span class="code-number">02</span>  name: <span class="code-string">"Dabloo Singh"</span>,</span><span class="code-line"><span class="code-number">03</span>  location: <span class="code-string">"Delhi, India"</span>,</span><span class="code-line"><span class="code-number">04</span>  focus: <span class="code-string">"Full-Stack Development"</span>,</span><span class="code-line"><span class="code-number">05</span>  stack: <span class="code-punctuation">[</span></span><span class="code-line"><span class="code-number">06</span>    <span class="code-string">"React.js"</span>, <span class="code-string">"Node.js"</span>,</span><span class="code-line"><span class="code-number">07</span>    <span class="code-string">"Tailwind CSS"</span>, <span class="code-string">"Supabase"</span></span><span class="code-line"><span class="code-number">08</span>  <span class="code-punctuation">]</span>,</span><span class="code-line"><span class="code-number">09</span>  seeking: <span class="code-value">"Software Engineer"</span></span><span class="code-line"><span class="code-number">10</span><span class="code-punctuation">};</span></span></code>
             </div>
-        </div>
+        </section>
 
-        <div class="skill-category">
-            <h3>Frontend</h3>
-            <div class="skill-grid">
-                <div class="skill-card">HTML5</div>
-                <div class="skill-card">CSS3</div>
-                <div class="skill-card">JavaScript</div>
-                <div class="skill-card">React.js</div>
-                <div class="skill-card">Tailwind CSS</div>
-                <div class="skill-card">Bootstrap</div>
-                <div class="skill-card">Responsive Web Design</div>
+        <section class="section section-alt" id="about" aria-labelledby="about-title">
+            <div class="shell about-grid">
+                <div>
+                    <p class="section-kicker">01 / About</p>
+                    <h2 class="section-title" id="about-title">Building useful things,<br>one thoughtful detail at a time.</h2>
+                    <p class="about-copy">I’m a final-year Computer Science undergraduate specializing in full-stack web development. My hands-on experience includes building responsive applications with React.js, Node.js, Tailwind CSS, and Supabase.</p>
+                    <p class="about-copy">I’m skilled in Python, Java, and SQL, with a strong foundation in data structures, algorithms, and REST API design. I’m seeking a Software Engineer or Full Stack Developer role.</p>
+                </div>
+                <div class="stats-grid" aria-label="Portfolio overview">
+                    <article class="stat-card"><span class="stat-number">07</span><span class="stat-label">Skill groups</span></article>
+                    <article class="stat-card"><span class="stat-number">03</span><span class="stat-label">Featured projects</span></article>
+                    <article class="stat-card"><span class="stat-number">02</span><span class="stat-label">Experience entries</span></article>
+                    <article class="stat-card"><span class="stat-number">03</span><span class="stat-label">Education milestones</span></article>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="skill-category">
-            <h3>Backend & APIs</h3>
-            <div class="skill-grid">
-                <div class="skill-card">Node.js</div>
-                <div class="skill-card">Express.js</div>
-                <div class="skill-card">REST APIs</div>
-                <div class="skill-card">OAuth Authentication</div>
+        <section class="section" id="skills" aria-labelledby="skills-title">
+            <div class="shell">
+                <div class="skills-head">
+                    <div>
+                        <p class="section-kicker">02 / Toolkit</p>
+                        <h2 class="section-title" id="skills-title">Skills &amp; tools</h2>
+                    </div>
+                    <div class="filter-list" id="skill-filters" role="group" aria-label="Filter skills by category">
+                        <button class="filter-button" type="button" data-skill-filter="All" aria-pressed="true">All</button>
+                        <button class="filter-button" type="button" data-skill-filter="Languages" aria-pressed="false">Languages</button>
+                        <button class="filter-button" type="button" data-skill-filter="Frontend" aria-pressed="false">Frontend</button>
+                        <button class="filter-button" type="button" data-skill-filter="Backend and APIs" aria-pressed="false">Backend &amp; APIs</button>
+                        <button class="filter-button" type="button" data-skill-filter="Databases" aria-pressed="false">Databases</button>
+                        <button class="filter-button" type="button" data-skill-filter="Data tools" aria-pressed="false">Data tools</button>
+                        <button class="filter-button" type="button" data-skill-filter="Developer tools" aria-pressed="false">Dev tools</button>
+                        <button class="filter-button" type="button" data-skill-filter="CS fundamentals" aria-pressed="false">CS fundamentals</button>
+                    </div>
+                </div>
+                <div class="skill-grid" id="skill-grid" aria-live="polite"></div>
             </div>
-        </div>
+        </section>
 
-        <div class="skill-category">
-            <h3>Databases</h3>
-            <div class="skill-grid">
-                <div class="skill-card">MongoDB</div>
-                <div class="skill-card">Supabase</div>
-                <div class="skill-card">SQL</div>
+        <section class="section section-alt" id="projects" aria-labelledby="projects-title">
+            <div class="shell">
+                <div class="projects-head">
+                    <div>
+                        <p class="section-kicker">03 / Selected work</p>
+                        <h2 class="section-title" id="projects-title">Projects</h2>
+                        <p class="section-intro">A few things I’ve built and the ideas behind them. Open a card to see details.</p>
+                    </div>
+                    <div class="filter-list" id="project-filters" role="group" aria-label="Filter projects">
+                        <button class="filter-button" type="button" data-project-filter="all" aria-pressed="true">All</button>
+                        <button class="filter-button" type="button" data-project-filter="full-stack" aria-pressed="false">Full stack</button>
+                        <button class="filter-button" type="button" data-project-filter="python" aria-pressed="false">Python</button>
+                    </div>
+                </div>
+                <div class="projects-grid">
+                    <details class="project-card" data-project-type="full-stack" open>
+                        <summary>
+                            <span class="project-top"><span class="project-index">PROJECT / 01</span><span class="project-toggle" aria-hidden="true">+</span></span>
+                            <h3>Bone Marrow Donation System</h3>
+                            <p class="project-stack">React.js · Supabase · Tailwind CSS · OAuth</p>
+                        </summary>
+                        <div class="project-details"><ul>
+                            <li>Full-stack donor management platform for institutes to manage donor and patient records centrally.</li>
+                            <li>OAuth authentication and role-based access control for protected access.</li>
+                            <li>Real-time database operations and a fully responsive interface.</li>
+                        </ul></div>
+                    </details>
+                    <details class="project-card" data-project-type="full-stack">
+                        <summary>
+                            <span class="project-top"><span class="project-index">PROJECT / 02</span><span class="project-toggle" aria-hidden="true">+</span></span>
+                            <h3>Food Delivery App</h3>
+                            <p class="project-stack">MERN stack · MongoDB · REST APIs</p>
+                        </summary>
+                        <div class="project-details"><ul>
+                            <li>Restaurant browsing, cart management, and RESTful APIs for menus and orders.</li>
+                            <li>User authentication, secure checkout, and order history.</li>
+                            <li>Responsive, mobile-friendly UI with MongoDB storage.</li>
+                        </ul></div>
+                    </details>
+                    <details class="project-card" data-project-type="python">
+                        <summary>
+                            <span class="project-top"><span class="project-index">PROJECT / 03</span><span class="project-toggle" aria-hidden="true">+</span></span>
+                            <h3>The Quiz Adda</h3>
+                            <p class="project-stack">Python · JSON · REST APIs</p>
+                        </summary>
+                        <div class="project-details"><ul>
+                            <li>JSON-backed question bank with coding questions across categories.</li>
+                            <li>Randomized questions, real-time score tracking, and a results summary.</li>
+                            <li>Input validation and modular architecture.</li>
+                        </ul></div>
+                    </details>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="skill-category">
-            <h3>Libraries & Data Tools</h3>
-            <div class="skill-grid">
-                <div class="skill-card">NumPy</div>
-                <div class="skill-card">Pandas</div>
-                <div class="skill-card">Matplotlib</div>
-                <div class="skill-card">Scikit-learn</div>
+        <section class="section" id="experience" aria-labelledby="experience-title">
+            <div class="shell">
+                <p class="section-kicker">04 / The journey</p>
+                <h2 class="section-title" id="experience-title">Experience &amp; education</h2>
+                <div class="journey-grid" style="margin-top: 34px">
+                    <div>
+                        <h3 class="timeline-heading">Experience</h3>
+                        <div class="timeline">
+                            <article class="timeline-card">
+                                <div class="timeline-top"><h4>Full-Stack Development Intern</h4><span class="timeline-date">Sep 2026 – Present</span></div>
+                                <p class="timeline-subtitle">Last Minutes Deal · Internship</p>
+                                <p class="timeline-place">Remote</p>
+                            </article>
+                            <article class="timeline-card">
+                                <div class="timeline-top"><h4>Industrial Trainee</h4><span class="timeline-date">Jul 2024 – Aug 2024</span></div>
+                                <p class="timeline-subtitle">NETCAMP</p>
+                                <ul class="timeline-points">
+                                    <li>Developed and optimized responsive user interfaces.</li>
+                                    <li>Exposure to Network Management, Android, Ethical Hacking, Data Science, and API integration.</li>
+                                </ul>
+                            </article>
+                        </div>
+                    </div>
+                    <div id="education">
+                        <h3 class="timeline-heading">Education</h3>
+                        <div class="timeline">
+                            <article class="timeline-card">
+                                <div class="timeline-top"><h4>B.Tech, Computer Science and Engineering</h4><span class="timeline-date">Aug 2022 – Ongoing</span></div>
+                                <p class="timeline-subtitle">United Institute of Technology</p>
+                                <p class="timeline-place">UP, India</p>
+                            </article>
+                            <article class="timeline-card">
+                                <div class="timeline-top"><h4>Intermediate (Science)</h4><span class="timeline-date">Mar 2020 – Mar 2022</span></div>
+                                <p class="timeline-subtitle">Pranab Chatarjee College, Buxar</p>
+                                <p class="timeline-place">Bihar, India</p>
+                            </article>
+                            <article class="timeline-card">
+                                <div class="timeline-top"><h4>Class 10th</h4><span class="timeline-date">Apr 2018 – May 2019</span></div>
+                                <p class="timeline-subtitle">Harihar Singh Academy</p>
+                                <p class="timeline-place">UP, India</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="skill-category">
-            <h3>Developer Tools & CS Fundamentals</h3>
-            <div class="skill-grid">
-                <div class="skill-card">Git</div>
-                <div class="skill-card">GitHub</div>
-                <div class="skill-card">VS Code</div>
-                <div class="skill-card">Data Structures & Algorithms</div>
-                <div class="skill-card">Object-Oriented Programming</div>
-                <div class="skill-card">Operating Systems</div>
-                <div class="skill-card">Computer Networks</div>
+        <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+            <div class="shell contact-grid">
+                <div>
+                    <p class="section-kicker">05 / Say hello</p>
+                    <h2 class="section-title" id="contact-title">Let’s build<br>something useful.</h2>
+                    <p class="contact-copy">I’m seeking a Software Engineer or Full Stack Developer opportunity. Feel free to get in touch.</p>
+                </div>
+                <div>
+                    <div class="contact-links">
+                        <div class="contact-row">
+                            <div class="contact-detail"><span class="contact-label">Email</span><a class="contact-value" href="mailto:dabloosingh463@gmail.com">dabloosingh463@gmail.com</a></div>
+                            <button class="copy-button" type="button" data-copy="dabloosingh463@gmail.com" aria-label="Copy email address" aria-live="polite">Copy</button>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-detail"><span class="contact-label">Phone</span><a class="contact-value" href="tel:+919934868176">+91 9934868176</a></div>
+                            <button class="copy-button" type="button" data-copy="+91 9934868176" aria-label="Copy phone number" aria-live="polite">Copy</button>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a class="social-link" href="https://www.linkedin.com/in/dabloo-singh-1a7716298" target="_blank" rel="noopener noreferrer" aria-label="Open Dabloo Singh's LinkedIn profile in a new tab">LinkedIn <span aria-hidden="true">↗</span></a>
+                        <a class="social-link" href="https://github.com/dabloo-singh" target="_blank" rel="noopener noreferrer" aria-label="Open Dabloo Singh's GitHub profile in a new tab">GitHub <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-inner">
+            <p>Dabloo Singh · Delhi, India</p>
+            <p>Software Engineer / Full Stack Developer</p>
         </div>
-    </div>
-</section>
+    </footer>
 
-<section id="projects" class="projects reveal">
-    <h2>Projects</h2>
+    <script>
+        (() => {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById("mode-toggle");
+            const themeLabel = document.getElementById("mode-label");
+            const themeIcon = document.getElementById("mode-icon");
+            const validThemes = new Set(["day", "night"]);
+            let savedTheme = null;
 
-    <div class="project-grid">
+            try {
+                savedTheme = localStorage.getItem("dablo-portfolio-theme");
+            } catch (error) {
+                savedTheme = null;
+            }
 
-        <div class="project-card">
-            <div class="project-icon">🩸</div>
-            <h3>Bone Marrow Donation System</h3>
-            <p class="tech-stack">React.js · Supabase · Tailwind CSS · OAuth</p>
-            <ul class="project-points">
-                <li>Built a full-stack donor management platform for institutes to centrally manage donor and patient records.</li>
-                <li>Implemented OAuth authentication and role-based access control to protect sensitive records.</li>
-                <li>Added real-time database operations and a responsive interface for consistent device usability.</li>
-            </ul>
-        </div>
+            const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
 
-        <div class="project-card">
-            <div class="project-icon">🍽️</div>
-            <h3>Food Delivery App</h3>
-            <p class="tech-stack">JavaScript · React.js · Node.js · Express.js · MongoDB</p>
-            <ul class="project-points">
-                <li>Created a full-stack food ordering platform with restaurant browsing, cart management, and REST APIs for menus and orders.</li>
-                <li>Added user authentication, secure checkout, and order history tracking.</li>
-                <li>Built a mobile-friendly React interface backed by MongoDB for scalable data storage.</li>
-            </ul>
-        </div>
+            function applyTheme(theme, remember) {
+                if (!validThemes.has(theme)) return;
+                root.dataset.theme = theme;
+                const isNight = theme === "night";
+                themeToggle.setAttribute("aria-pressed", String(isNight));
+                themeToggle.setAttribute("aria-label", `Switch to ${isNight ? "day" : "night"} mode`);
+                themeLabel.textContent = `${isNight ? "Day" : "Night"} mode`;
+                themeIcon.textContent = isNight ? "☀" : "☾";
+                document.querySelector('meta[name="theme-color"]').setAttribute(
+                    "content",
+                    getComputedStyle(root).getPropertyValue("--page").trim()
+                );
+                if (remember) {
+                    try {
+                        localStorage.setItem("dablo-portfolio-theme", theme);
+                    } catch (error) {
+                        // The selected theme remains active for this page view.
+                    }
+                }
+            }
 
-        <div class="project-card">
-            <div class="project-icon">🧠</div>
-            <h3>The Quiz Adda</h3>
-            <p class="tech-stack">Python · JSON · REST APIs</p>
-            <ul class="project-points">
-                <li>Developed a Python quiz app with a JSON-backed question bank for coding questions across categories.</li>
-                <li>Implemented randomized question selection, real-time scoring, and a final results summary.</li>
-                <li>Added input validation and modular structure to make new question categories easy to add.</li>
-            </ul>
-        </div>
+            const compatibleSavedTheme = savedTheme === "midnight" ? "night" : savedTheme === "daylight" ? "day" : savedTheme;
+            applyTheme(validThemes.has(compatibleSavedTheme) ? compatibleSavedTheme : systemTheme, false);
 
-    </div>
-</section>
+            themeToggle.addEventListener("click", () => {
+                applyTheme(root.dataset.theme === "night" ? "day" : "night", true);
+            });
 
-<section id="experience" class="experience reveal">
-    <h2>Experience</h2>
-    <div class="experience-card">
-        <div class="exp-header">
-            <div class="exp-role">
-                <h3>Full-Stack Development Intern</h3>
-                <p class="exp-company">Last Minutes Deal · Internship</p>
-            </div>
-            <div class="exp-meta">
-                <span class="exp-date">Sep 2026 - Present · 2 mos</span>
-                <span class="exp-location">Remote</span>
-            </div>
-        </div>
-    </div>
+            const skills = [
+                ["C", "Languages"], ["C++", "Languages"], ["Java", "Languages"], ["Python", "Languages"], ["SQL", "Languages"],
+                ["HTML5", "Frontend"], ["CSS3", "Frontend"], ["JavaScript", "Frontend"], ["React.js", "Frontend"],
+                ["Tailwind CSS", "Frontend"], ["Bootstrap", "Frontend"], ["Responsive Web Design", "Frontend"],
+                ["Node.js", "Backend and APIs"], ["Express.js", "Backend and APIs"], ["REST APIs", "Backend and APIs"], ["OAuth authentication", "Backend and APIs"],
+                ["MongoDB", "Databases"], ["Supabase", "Databases"],
+                ["NumPy", "Data tools"], ["Pandas", "Data tools"], ["Matplotlib", "Data tools"], ["Scikit-learn", "Data tools"],
+                ["Git", "Developer tools"], ["GitHub", "Developer tools"], ["VS Code", "Developer tools"],
+                ["Data Structures & Algorithms", "CS fundamentals"], ["Object-Oriented Programming", "CS fundamentals"],
+                ["Operating Systems", "CS fundamentals"], ["Computer Networks", "CS fundamentals"]
+            ];
+            const skillGrid = document.getElementById("skill-grid");
+            const skillFilterButtons = [...document.querySelectorAll("[data-skill-filter]")];
 
-    <div class="experience-card">
-        <div class="exp-header">
-            <h3>NETCAMP - Industrial Training</h3>
-            <span class="exp-date">July 2024 - Aug 2024</span>
-        </div>
-        <ul class="exp-list">
-            <li>Developed and optimized responsive user interfaces, improving application structure and usability during hands-on training.</li>
-            <li>Gained applied exposure to Network Management, Android App Development, Ethical Hacking, Data Science, and API Integration alongside web development.</li>
-            <li>Collaborated in a structured training environment and applied real-world software development workflows to assigned projects.</li>
-        </ul>
-    </div>
-</section>
+            function renderSkills(category) {
+                skillGrid.replaceChildren();
+                skills.filter(([, group]) => category === "All" || group === category).forEach(([name, group]) => {
+                    const chip = document.createElement("article");
+                    chip.className = "skill-chip";
+                    const skillName = document.createElement("span");
+                    skillName.className = "skill-name";
+                    skillName.textContent = name;
+                    chip.append(skillName);
+                    if (category === "All") {
+                        const skillGroup = document.createElement("span");
+                        skillGroup.className = "skill-group";
+                        skillGroup.textContent = group;
+                        chip.append(skillGroup);
+                    }
+                    skillGrid.append(chip);
+                });
+            }
 
-<section id="contact" class="contact reveal">
-    <h2>Contact Me</h2>
+            renderSkills("All");
+            skillFilterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    skillFilterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+                    renderSkills(button.dataset.skillFilter);
+                });
+            });
 
-    <form class="contact-form" action="https://formsubmit.co/dabloosingh463@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
+            const projectFilterButtons = [...document.querySelectorAll("[data-project-filter]")];
+            const projectCards = [...document.querySelectorAll("[data-project-type]")];
+            projectFilterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const filter = button.dataset.projectFilter;
+                    projectFilterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+                    projectCards.forEach((card) => {
+                        card.hidden = filter !== "all" && card.dataset.projectType !== filter;
+                    });
+                });
+            });
 
-        <input type="email" name="email" placeholder="Email Address" required>
+            const words = ["responsive web apps", "REST APIs", "full-stack MERN products", "secure, role-based platforms"];
+            const typedWord = document.getElementById("typed-word");
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-        <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
+            if (!reduceMotion.matches) {
+                let wordIndex = 0;
+                let characterIndex = words[0].length;
+                let deleting = true;
 
-        <input type="hidden" name="_captcha" value="false">
-        <button type="submit" class="btn primary">
-            Send Message
-        </button>
-    </form>
-</section>
+                function typeNext() {
+                    const word = words[wordIndex];
+                    characterIndex += deleting ? -1 : 1;
+                    typedWord.textContent = word.slice(0, characterIndex);
+                    let delay = deleting ? 45 : 75;
 
-<footer>
-    <p>© 2026 Dabloo Singh. All Rights Reserved. | Delhi, India | <a href="mailto:dabloosingh463@gmail.com">dabloosingh463@gmail.com</a></p>
-</footer>
+                    if (deleting && characterIndex <= 0) {
+                        deleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        delay = 280;
+                    } else if (!deleting && characterIndex >= words[wordIndex].length) {
+                        deleting = true;
+                        delay = 1500;
+                    }
+                    window.setTimeout(typeNext, delay);
+                }
 
-<script src="script.js"></script>
+                window.setTimeout(typeNext, 1800);
+            }
+
+            const navLinks = [...document.querySelectorAll(".main-nav a")];
+            const sectionTargets = navLinks
+                .map((link) => document.getElementById(link.hash.slice(1)))
+                .filter(Boolean);
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    const visibleSection = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+                    if (!visibleSection) return;
+                    navLinks.forEach((link) => {
+                        if (link.hash === `#${visibleSection.target.id}`) {
+                            link.setAttribute("aria-current", "location");
+                        } else {
+                            link.removeAttribute("aria-current");
+                        }
+                    });
+                }, { rootMargin: "-25% 0px -60% 0px", threshold: [0, .1, .25, .5] });
+                sectionTargets.forEach((section) => observer.observe(section));
+            }
+
+            async function copyText(value) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    try {
+                        await navigator.clipboard.writeText(value);
+                        return true;
+                    } catch (error) {
+                        // Try the selection-based fallback below.
+                    }
+                }
+                const fallback = document.createElement("textarea");
+                fallback.value = value;
+                fallback.setAttribute("readonly", "");
+                fallback.style.position = "fixed";
+                fallback.style.opacity = "0";
+                document.body.append(fallback);
+                fallback.select();
+                let copied = false;
+                try {
+                    copied = document.execCommand("copy");
+                } catch (error) {
+                    copied = false;
+                } finally {
+                    fallback.remove();
+                }
+                return copied;
+            }
+
+            document.querySelectorAll("[data-copy]").forEach((button) => {
+                button.addEventListener("click", async () => {
+                    const originalText = button.textContent;
+                    const originalLabel = button.getAttribute("aria-label");
+                    const copied = await copyText(button.dataset.copy);
+                    button.textContent = copied ? "Copied" : "Select & copy";
+                    button.setAttribute("aria-label", copied ? "Copied to clipboard" : "Copy failed; select the contact text to copy");
+                    button.dataset.state = copied ? "copied" : "failed";
+                    window.setTimeout(() => {
+                        button.textContent = originalText;
+                        button.setAttribute("aria-label", originalLabel);
+                        delete button.dataset.state;
+                    }, 1600);
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
